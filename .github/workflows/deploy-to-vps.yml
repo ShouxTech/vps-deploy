@@ -96,7 +96,7 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$VPS_HOST" >> ~/.ssh/known_hosts
 
-      - name: Upload docker-compose.yaml to VPS
+      - name: Copy docker-compose file to VPS
         run: |
           ssh -i ~/.ssh/deploy_key ${VPS_USER}@${VPS_HOST} "mkdir -p ${REMOTE_DIR}"
           scp -i ~/.ssh/deploy_key ${{ inputs.compose-file-path }} ${VPS_USER}@${VPS_HOST}:${REMOTE_DIR}/docker-compose.yaml
